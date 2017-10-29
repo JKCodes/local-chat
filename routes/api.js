@@ -75,4 +75,29 @@ router.post('/:resource', function(req, res, next) {
   }
 })
 
+router.put('/:resource/:id', function(req, res, next) {
+  var resource = req.params.resource
+  var id = req.params.id
+
+  if (resource == 'profile') {
+    Profile.findByIdAndUpdate(id, req.body, {new:true}, function(err, result) {
+      if (err) {
+        res.json({
+          confirmation: 'fail',
+          message: err
+        })
+
+        return
+      }
+
+      res.json({
+        confirmation: 'success',
+        result: result
+      })
+
+      return
+    })
+  }
+})
+
 module.exports = router
