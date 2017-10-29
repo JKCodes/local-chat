@@ -3,6 +3,7 @@ var router = express.Router()
 var Profile = require('../models/Profile')
 
 router.get('/:resource', function(req, res, next) {
+  var resource = req.params.resource
 
   if (resource == 'profile') {
     Profile.find(null, function(err, results) {
