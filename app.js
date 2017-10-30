@@ -10,7 +10,6 @@ var sessions = require('client-sessions')
 var index = require('./routes/index')
 var api = require('./routes/api')
 var account = require('./routes/account')
-var geo = require('./routes/geo')
 
 var dbUrl = 'mongodb://localhost/local-chat'
 mongoose.connect(dbUrl, function(err, res) {
@@ -45,7 +44,6 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/', index)
 app.use('/api', api)
 app.use('/account', account)
-app.use('/geo', geo)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
