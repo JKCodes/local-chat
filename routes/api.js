@@ -3,24 +3,26 @@ var router = express.Router()
 var Profile = require('../models/Profile')
 var ProfileController = require('../controllers/ProfileController')
 var Place = require('../models/Place')
+PlaceController = require('../controllers/PlaceController')
+
 
 router.get('/:resource', function(req, res, next) {
   var resource = req.params.resource
 
   if (resource == 'place') {
-    Place.find(null, function(err, results) {
-      if (err) {
-        res.json({
-          confirmation: 'fail',
-          message: err
-        })
-
-        return
-      }
-
+    PlaceController.get(null)
+    .then(function(results) {
       res.json({
         confirmation: 'success',
         results: results
+      })
+
+      return
+    })
+    .catch(function(err) {
+      res.json({
+        confirmation: 'fail',
+        message: err
       })
 
       return
