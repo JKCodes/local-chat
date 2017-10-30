@@ -1,6 +1,7 @@
 var express = require('express')
 var router = express.Router()
 var Profile = require('../models/Profile')
+var ProfileController = require('../controllers/ProfileController')
 var Place = require('../models/Place')
 
 router.get('/:resource', function(req, res, next) {
@@ -27,19 +28,19 @@ router.get('/:resource', function(req, res, next) {
   }
 
   if (resource == 'profile') {
-    Profile.find(null, function(err, results) {
-      if (err) {
-        res.json({
-          confirmation: 'fail',
-          message: err
-        })
-
-        return
-      }
-
+    ProfileController.get(null)
+    .then(function(results) {
       res.json({
         confirmation: 'success',
         results: results
+      })
+
+      return
+    })
+    .catch(function(err) {
+      res.json({
+        confirmation: 'fail',
+        message: err
       })
 
       return
