@@ -1,8 +1,6 @@
 var express = require('express')
 var router = express.Router()
-var Profile = require('../models/Profile')
 var ProfileController = require('../controllers/ProfileController')
-var Place = require('../models/Place')
 var PlaceController = require('../controllers/PlaceController')
 var controllers = {
   profile: ProfileController,
