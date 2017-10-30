@@ -8,6 +8,7 @@ var mongoose = require('mongoose')
 
 var index = require('./routes/index')
 var api = require('./routes/api')
+var account = require('./routes/account')
 
 var dbUrl = 'mongodb://localhost/local-chat'
 mongoose.connect(dbUrl, function(err, res) {
@@ -34,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', index)
 app.use('/api', api)
+app.use('/account', account)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
