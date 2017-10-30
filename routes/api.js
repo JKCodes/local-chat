@@ -1,11 +1,6 @@
 var express = require('express')
 var router = express.Router()
-var ProfileController = require('../controllers/ProfileController')
-var PlaceController = require('../controllers/PlaceController')
-var controllers = {
-  profile: ProfileController,
-  place: PlaceController
-}
+var controllers = require('../controllers')
 
 router.get('/:resource', function(req, res, next) {
   var resource = req.params.resource
