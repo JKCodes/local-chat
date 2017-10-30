@@ -17,11 +17,29 @@ module.exports = {
   },
 
   getById: function(id) {
+    return new Promise(function(resolve, reject) {
+      Profile.findById(id, function(err, result) {
+        if (err) {
+          reject(err)
+          return
+        }
 
+        resolve(result)
+      })
+    })
   },
 
   post: function(params) {
+    return new Promise(function(resolve, reject) {
+      Profile.create(params, function(err, result) {
+        if (err) {
+          reject(err)
+          return
+        }
 
+        resolve(result)
+      })
+    })
   },
 
   put: function(id, params) {
