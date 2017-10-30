@@ -109,26 +109,34 @@ router.post('/:resource', function(req, res, next) {
 router.put('/:resource/:id', function(req, res, next) {
   var resource = req.params.resource
   var id = req.params.id
+  var controller = controllers[resource]
 
-  if (resource == 'profile') {
-    Profile.findByIdAndUpdate(id, req.body, {new:true}, function(err, result) {
-      if (err) {
-        res.json({
-          confirmation: 'fail',
-          message: err
-        })
-
-        return
-      }
-
-      res.json({
-        confirmation: 'success',
-        result: result
-      })
-
-      return
+  if (controller == null) {
+    res.json({
+      confirmation: 'fail',
+      message: 'Invalid Resource.'
     })
+
+    return
   }
+
+  controller.put(id, req.body)
+  .then(function(result) {
+    res.json({
+      confirmation: 'success',
+      result: result
+    })
+
+    return
+  })
+  .catch(function(err) {
+    res.json({
+      confirmation: 'fail',
+      message: 'Not found'
+    })
+
+    return
+  })
 })
 
 module.exports = router
