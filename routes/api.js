@@ -3,51 +3,33 @@ var router = express.Router()
 var Profile = require('../models/Profile')
 var ProfileController = require('../controllers/ProfileController')
 var Place = require('../models/Place')
-PlaceController = require('../controllers/PlaceController')
-
+var PlaceController = require('../controllers/PlaceController')
+var controllers = {
+  profile: ProfileController,
+  place: PlaceController
+}
 
 router.get('/:resource', function(req, res, next) {
   var resource = req.params.resource
+  var controller = controllers[resource]
 
-  if (resource == 'place') {
-    PlaceController.get(null)
-    .then(function(results) {
-      res.json({
-        confirmation: 'success',
-        results: results
-      })
-
-      return
+  controller.get(null)
+  .then(function(results) {
+    res.json({
+      confirmation: 'success',
+      results: results
     })
-    .catch(function(err) {
-      res.json({
-        confirmation: 'fail',
-        message: err
-      })
 
-      return
+    return
+  })
+  .catch(function(err) {
+    res.json({
+      confirmation: 'fail',
+      message: err
     })
-  }
 
-  if (resource == 'profile') {
-    ProfileController.get(null)
-    .then(function(results) {
-      res.json({
-        confirmation: 'success',
-        results: results
-      })
-
-      return
-    })
-    .catch(function(err) {
-      res.json({
-        confirmation: 'fail',
-        message: err
-      })
-
-      return
-    })
-  }
+    return
+  })
 })
 
 router.get('/:resource/:id', function(req, res, next) {
