@@ -44,6 +44,27 @@ router.get('/:action', function(req, res, next) {
 router.post('/:action', function(req, res, next) {
   var action = req.params.action
 
+  if (action == 'register') {
+    ProfileController.post(req.body)
+    .then(function(profile) {
+
+      req.session.user = profile.id
+
+      res.json({
+        confirmation: 'success',
+        user: profile
+      })
+    })
+    .catch(function(err) {
+      res.json({
+        confirmation: 'fail',
+        message: err
+      })
+
+      return
+    })
+  }
+
   if (action == 'login') {
     var email = req.body.email
 
