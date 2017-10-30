@@ -4,13 +4,19 @@ var superagent = require('superagent')
 
 router.get('/', function(req, res, next) {
 
+  // format = 100+west+33rd+street,+new+york,ny
   var address = req.query.address
 
-  var url = "https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyCAwPpxBVTQgFgmOQ0alCy1WitDxsNpdtQ"
+  var url = "https://maps.googleapis.com/maps/api/geocode/json"
+
+  var params = {
+    address: address,
+    key: 'AIzaSyCAwPpxBVTQgFgmOQ0alCy1WitDxsNpdtQ'
+  }
 
   superagent
   .get(url)
-  .query(null)
+  .query(params)
   .set('Accept', 'text/json')
   .end(function(err, response) {
     if (err) {
