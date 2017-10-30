@@ -41,7 +41,7 @@ module.exports = {
 
       var geoParams = {
         address: address,
-        key: 'AIzaSyCAwPpxBVTQgFgmOQ0alCy1WitDxsNpdtQ'
+        key: process.env.GOOGLE_MAP_API
       }
 
       superagent
@@ -49,16 +49,12 @@ module.exports = {
       .query(geoParams)
       .set('Accept', 'text/json')
       .end(function(err, response) {
-        if (err.status > 400) {
+        if (err.status > 400 || response.body.status == 'ZERO_RESULTS') {
           reject(err)
 
           return
         }
 
-        reject(response)
-
-        return
-        
         var locationInfo = response.body.results[0]
         var geometry = locationInfo.geometry
         var latLng = geometry.location

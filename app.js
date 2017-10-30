@@ -6,17 +6,17 @@ var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
 var mongoose = require('mongoose')
 var sessions = require('client-sessions')
+require('dotenv').config()
 
 var index = require('./routes/index')
 var api = require('./routes/api')
 var account = require('./routes/account')
 
-var dbUrl = 'mongodb://localhost/local-chat'
-mongoose.connect(dbUrl, function(err, res) {
+mongoose.connect(process.env.MONGO_DB, function(err, res) {
   if (err) {
     console.log('DB CONNECTION FAILED: ' + err)
   } else {
-    console.log('DB CONNECTION SUCCESS: ' + dbUrl)
+    console.log('DB CONNECTION SUCCESS: ' + process.env.MONGO_DB)
   }
 })
 
@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(sessions({
   cookieName: 'session',
-  secret: 'oiwjeoifjwef',
+  secret: process.env.SESSION_SECRET,
   duration: 24*60*60*1000,
   activeDuration: 30*60*1000
 }))
