@@ -44,7 +44,7 @@ module.exports = {
 
   put: function(id, params) {
     return new Promise(function(resolve, reject) {
-      Profile.findByIdAndUpdate(id, req.body, {new:true}, function(err, profile) {
+      Profile.findByIdAndUpdate(id, params, {new:true}, function(err, profile) {
         if (err) {
           reject(err)
           return

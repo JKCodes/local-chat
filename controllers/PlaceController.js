@@ -44,7 +44,7 @@ module.exports = {
 
   put: function(id, params) {
     return new Promise(function(resolve, reject) {
-      Place.findByIdAndUpdate(id, req.body, {new:true}, function(err, place) {
+      Place.findByIdAndUpdate(id, params, {new:true}, function(err, place) {
         if (err) {
           reject(err)
           return
