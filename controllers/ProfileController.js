@@ -18,39 +18,39 @@ module.exports = {
 
   getById: function(id) {
     return new Promise(function(resolve, reject) {
-      Profile.findById(id, function(err, result) {
+      Profile.findById(id, function(err, profile) {
         if (err) {
           reject(err)
           return
         }
 
-        resolve(result)
+        resolve(profile)
       })
     })
   },
 
   post: function(params) {
     return new Promise(function(resolve, reject) {
-      Profile.create(params, function(err, result) {
+      Profile.create(params, function(err, profile) {
         if (err) {
           reject(err)
           return
         }
 
-        resolve(result)
+        resolve(profile)
       })
     })
   },
 
   put: function(id, params) {
     return new Promise(function(resolve, reject) {
-      Profile.findByIdAndUpdate(id, req.body, {new:true}, function(err, result) {
+      Profile.findByIdAndUpdate(id, req.body, {new:true}, function(err, profile) {
         if (err) {
           reject(err)
           return
         }
 
-        resolve(result)
+        resolve(profile)
       })
     })
   }

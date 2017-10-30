@@ -18,39 +18,39 @@ module.exports = {
 
   getById: function(id) {
     return new Promise(function(resolve, reject) {
-      Place.findById(id, function(err, result) {
+      Place.findById(id, function(err, place) {
       if (err) {
         reject(err)
           return
         }
 
-        resolve(result)
+        resolve(place)
       })
     })
   },
 
   post: function(params) {
     return new Promise(function(resolve, reject) {
-      Place.create(params, function(err, result) {
+      Place.create(params, function(err, place) {
         if (err) {
           reject(err)
           return
         }
 
-        resolve(result)
+        resolve(place)
       })
     })
   },
 
   put: function(id, params) {
     return new Promise(function(resolve, reject) {
-      Place.findByIdAndUpdate(id, req.body, {new:true}, function(err, result) {
+      Place.findByIdAndUpdate(id, req.body, {new:true}, function(err, place) {
         if (err) {
           reject(err)
           return
         }
 
-        resolve(result)
+        resolve(place)
       })
     })
   }
