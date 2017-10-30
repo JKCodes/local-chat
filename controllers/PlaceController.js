@@ -55,8 +55,10 @@ module.exports = {
           return
         }
 
-        console.log(response)
+        reject(response)
 
+        return
+        
         var locationInfo = response.body.results[0]
         var geometry = locationInfo.geometry
         var latLng = geometry.location
