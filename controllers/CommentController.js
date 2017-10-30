@@ -54,6 +54,19 @@ module.exports = {
       })
     })
 
+  },
+
+  delete: function(id) {
+    return new Promise(function(resolve, reject) {
+      Comment.findByIdAndRemove(id, function(err, comment) {
+        if (err) {
+          reject(err)
+          return
+        }
+
+        resolve(comment)
+      })
+    })
   }
 
 }

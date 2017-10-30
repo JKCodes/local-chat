@@ -132,4 +132,37 @@ router.put('/:resource/:id', function(req, res, next) {
   })
 })
 
+router.delete('/:resource/:id', function(req, res, next) {
+  var resource = req.params.resource
+  var id = req.params.id
+  var controller = controllers[resource]
+
+  if (controller == null) {
+    res.json({
+      confirmation: 'fail',
+      message: 'Invalid Resource.'
+    })
+
+    return
+  }
+
+  controller.delete(id)
+  .then(function(result) {
+    res.json({
+      confirmation: 'success',
+      message: "Requested resource deleted successfully"
+    })
+
+    return
+  })
+  .catch(function(err) {
+    res.json({
+      confirmation: 'fail',
+      message: 'Not found'
+    })
+
+    return
+  })
+})
+
 module.exports = router

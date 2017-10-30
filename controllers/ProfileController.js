@@ -57,6 +57,19 @@ module.exports = {
         resolve(profile)
       })
     })
+  },
+
+  delete: function(id) {
+    return new Promise(function(resolve, reject) {
+      Profile.findByIdAndRemove(id, function(err, profile) {
+        if (err) {
+          reject(err)
+          return
+        }
+
+        resolve(profile)
+      })
+    })
   }
 
 }

@@ -53,6 +53,19 @@ module.exports = {
         resolve(place)
       })
     })
+  },
+
+  delete: function(id) {
+    return new Promise(function(resolve, reject) {
+      Place.findByIdAndRemove(id, function(err, place) {
+        if (err) {
+          reject(err)
+          return
+        }
+
+        resolve(place)
+      })
+    })
   }
 
 }
