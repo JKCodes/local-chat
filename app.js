@@ -32,7 +32,7 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
-app.user(sessions({
+app.use(sessions({
   cookieName: 'session',
   secret: 'oiwjeoifjwef',
   duration: 24*60*60*1000,

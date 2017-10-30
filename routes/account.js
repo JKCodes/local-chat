@@ -3,6 +3,29 @@ var router = express.Router();
 var ProfileController = require('../controllers/ProfileController')
 var bcrypt = require('bcrypt')
 
+router.get('/:action', function(req, res, next) {
+  var action = req.params.action
+  
+  if (action == 'currentuser') {
+    if (!req.session || !req.session.user) {
+      res.json({
+        confirmation: 'fail',
+        mssage: 'User not logged in'
+      })
+
+      return
+    }
+
+    var userId = req.session.user
+
+    res.json({
+      confirmation: 'fail',
+      user: userId
+    })
+
+  }
+})
+
 router.post('/:action', function(req, res, next) {
   var action = req.params.action
 
