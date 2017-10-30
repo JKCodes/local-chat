@@ -14,5 +14,17 @@
       <input type="password" name="password" placeholder="Password" /><br />
       <input type="submit" value="Submit" />
     </form>
+
+    <h2>Create Place</h2>
+    <form action="/api/place" method="post">
+      <input type="text" name="name" placeholder="Name" /><br />
+      <input type="text" name="description" placeholder="Description" /><br />
+      <input type="text" name="type" placeholder="Type" /><br />
+      <input type="text" name="address" placeholder="Address" /><br />
+      <input type="text" name="city" placeholder="City" /><br />
+      <input type="text" name="state" placeholder="State" /><br />
+      <input type="text" name="zip" placeholder="Zip" /><br />
+      <input type="submit" value="Submit" />
+    </form>
   </body>
 </html>
