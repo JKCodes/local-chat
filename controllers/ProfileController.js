@@ -4,11 +4,16 @@ var bcrypt = require('bcrypt')
 
 module.exports = {
 
-  get: function(params) {
+  get: function(params, isRaw) {
     return new Promise(function(resolve, reject) {
       Profile.find(params, function(err, profiles) {
         if (err) {
           reject(err)
+          return
+        }
+
+        if (isRaw == true) {
+          resolve(profiles)
           return
         }
 
