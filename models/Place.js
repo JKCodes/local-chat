@@ -8,6 +8,10 @@ var PlaceSchema = new mongoose.Schema({
   city: {type:String, default: ''},
   state: {type:String, default: ''},
   zip: {type:String, default: ''},
+  geo: {
+    type: [Number],
+    index: '2d'
+  },
   timestamp: {type:Date, default:Date.now}
 })
 
