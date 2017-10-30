@@ -33,12 +33,21 @@ router.post('/:action', function(req, res, next) {
         return
       }
 
+      req.session.user = profile._id
+
       res.json({
         confirmation: 'success',
         profile: profile.summary()
       })
     })
-    .catch()
+    .catch(function(err) {
+      res.json({
+        confirmation: 'fail',
+        message: err
+      })
+
+      return
+    })
   }
 })
 
