@@ -12,7 +12,11 @@ module.exports = {
           return
         }
 
-        resolve(profiles)
+        var list = []
+        for (var i=0;i<profiles.length;i++)
+          list.push(profiles[i].summary())
+
+        resolve(list)
       })
     })
   },
@@ -25,7 +29,7 @@ module.exports = {
           return
         }
 
-        resolve(profile)
+        resolve(profile.summary())
       })
     })
   },
@@ -41,7 +45,7 @@ module.exports = {
           return
         }
 
-        resolve(profile)
+        resolve(profile.summary())
       })
     })
   },
@@ -54,7 +58,7 @@ module.exports = {
           return
         }
 
-        resolve(profile)
+        resolve(profile.summary())
       })
     })
   },
@@ -67,7 +71,7 @@ module.exports = {
           return
         }
 
-        resolve(profile)
+        resolve(profile.summary())
       })
     })
   }
